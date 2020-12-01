@@ -1,0 +1,16 @@
+<div class="container">
+    <form [formGroup]="formUser">
+        <div class="form-group">
+            <sc-select
+            formControlName="type"
+            [items]="items"
+            placeholder="Seleccioná un item"
+            label="Tipo DNI">
+          </sc-select>
+            <sc-input label="Número de Documento" formControlName="dni"></sc-input>
+            <sc-input label="Nombre" formControlName="name"></sc-input>
+            <sc-input label="Apellido" formControlName="lastname"></sc-input>
+        </div>
+        <sc-button class="btn btn-primary" (onClick)="saveForm()" >Guardar</sc-button>
+    </form>
+</div>
