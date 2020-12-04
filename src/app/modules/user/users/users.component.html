@@ -1,0 +1,31 @@
+<div class="container">
+    <form [formGroup]="formUser">
+        <div class="row">
+            <div class="col-md-4">
+                <sc-select formControlName="type" [items]="items" placeholder="Seleccioná un item" label="Tipo DNI">
+                </sc-select>
+                {{ formUser.get("type").errors | json }}
+                <sc-input label="Número de Documento" formControlName="dni"></sc-input>
+                {{ formUser.get("dni").errors | json }}
+                <sc-input label="Nombre" formControlName="name" [errorMessages]="errorMessages"></sc-input>
+                {{ formUser.get("name").errors | json }}
+            </div>
+            <div class="col-md-4">
+                <sc-input label="Precio" formControlName="price" [pipes]="[ { 'pipe': scCurrency } ]"></sc-input>
+                {{ formUser.get("price").errors | json }}
+                <sc-input label="Edad" type="number" formControlName="age" type="number"></sc-input>
+                {{ formUser.get("age").errors | json }}
+                <label for="">Nacimiento</label>
+                <sc-date-picker formControlName="birth" lab placement="right"></sc-date-picker>
+                {{ formUser.get("birth").errors | json }}
+            </div>
+            <div class="col-md-4">
+                <sc-input label="Email" type="email" formControlName="mail" [errorMessages]="errorMessages"></sc-input>
+                {{ formUser.get("mail").errors | json }}
+            </div>
+        </div>
+        <div class="text-right">
+            <sc-button type="primary" [disabled]="!this.formUser.valid" (onClick)="saveForm()">Guardar</sc-button>
+        </div>
+    </form>
+</div>

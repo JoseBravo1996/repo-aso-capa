@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UsersComponent } from './users/users.component';
-import { UsersDetailsComponent } from './users-details/users-details.component';
+import { DadComponent } from '@modules/communication/dad/dad.component';
+import { UsersDetailsComponent } from './user/users-details/users-details.component';
+import { UsersComponent } from './user/users/users.component';
 
 const routes: Routes = [{
     path: '',
@@ -10,10 +11,14 @@ const routes: Routes = [{
 {
     path:'details',
     component: UsersDetailsComponent
+},
+{
+    path:'padre',
+    component: DadComponent
 }];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class UsersRoutingModule { }
+export class ModulesRoutingModule { }

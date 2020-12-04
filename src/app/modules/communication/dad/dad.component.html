@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row">
+      <div class="col-sm-8 offset-sm-2">
+          <div [formGroup]="form">
+            <sc-input label="Comunicar al hijo" formControlName="com"></sc-input>
+          </div>       
+        <app-son [sendSon]="sendSon" 
+        (sendDad)="sendAlertToDad($event)"></app-son>
+        <h1>Padre Component</h1>
+        <div *ngIf="validMessage">
+          <img src="https://i.pinimg.com/originals/71/3a/ca/713acac3874b4bd703272a6ef910eee5.jpg">
+        </div>
+      </div>
+    </div>
+  </div>
