@@ -1,16 +1,34 @@
 <div class="container">
+    {{ dateBirth | date: 'dd/MM/yyyy'}}
+    <br>
+    {{ valuePayment | currency: 'ARS' }}
+    <br>
+    {{ valuePayment | currency: '1.2.2' }}
     <form [formGroup]="formUser">
-        <div class="form-group">
-            <sc-select
-            formControlName="type"
-            [items]="items"
-            placeholder="Seleccioná un item"
-            label="Tipo DNI">
-          </sc-select>
-            <sc-input label="Número de Documento" formControlName="dni"></sc-input>
-            <sc-input label="Nombre" formControlName="name"></sc-input>
-            <sc-input label="Apellido" formControlName="lastname"></sc-input>
+        <div class="row">
+            <div class="col-md-4">
+                <sc-select
+                formControlName="type"
+                [items]="items"
+                placeholder="Seleccioná un item"
+                label="Tipo DNI">
+              </sc-select>
+                <sc-input label="Número de Documento" formControlName="dni"></sc-input>
+                <sc-input label="Nombre" formControlName="name" [errorMessages]="customErrorMessages"></sc-input>  
+            </div>
+            <div class="col-md-4">
+                <sc-input label="Precio" formControlName="prince" [pipes]="[ { 'pipe': scCurrency } ]"></sc-input>
+                <sc-input label="Edad" type="number" formControlName="age"></sc-input>
+                <sc-date-picker formControlName="dateNac"></sc-date-picker>
+            </div>
+            <div class="col-md-4">
+                <sc-input label="Apellido" formControlName="lastname" [errorMessages]="customErrorMessages"></sc-input>
+                <sc-input label="E-Mail" formControlName="mail" [errorMessages]="customErrorMessages"></sc-input>
+            </div>
+            
         </div>
-        <sc-button class="btn btn-primary" (onClick)="saveForm()" >Guardar</sc-button>
+        <div class="text-right">
+            <sc-button type="primary" [disabled]="!this.formUser.valid" (onClick)="saveForm()" >Guardar</sc-button>
+        </div>
     </form>
 </div>

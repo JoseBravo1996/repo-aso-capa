@@ -1,6 +1,5 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModulesModule } from './modules/modules.module';
-import { BodyComponent } from './layout/body/body.component';
-import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -21,7 +20,8 @@ import { CoreModule } from '@core/core.module';
     DataModule,
     ModulesModule,
     LayoutModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

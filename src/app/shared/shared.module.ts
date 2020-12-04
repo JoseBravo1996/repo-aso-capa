@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonModule, InputModule, SelectModule } from '@sc/portal.fe.lib.ui-core-components';
+import { ButtonModule, InputModule, SelectModule, DatePickerModule } from '@sc/portal.fe.lib.ui-core-components';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -11,7 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     SelectModule,
     InputModule,
-    ButtonModule
+    ButtonModule,
+    DatePickerModule
   ],
   exports: [
     FormsModule,
@@ -19,7 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     SelectModule,
     InputModule,
-    ButtonModule
+    ButtonModule,
+    DatePickerModule
   ]
 })
 export class SharedModule { }

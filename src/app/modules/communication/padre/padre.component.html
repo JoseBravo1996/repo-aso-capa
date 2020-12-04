@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <p>Componente Padre</p>
+        <div class="col-md-8">
+            <div [formGroup]="form">
+                <sc-input label="Comunicar al hijo" formControlName="control"></sc-input>
+            </div>
+            <!--Comunicacion padre a hijo -->
+            <!-- <app-hijo [variable hijo]="variable padre"></app-hijo> -->
+            <!--Comunicacion hijo a padre -->
+
+            <!-- <app-hijo [variable hijo (output)]="metodo del padre"></app-hijo> -->
+            <app-hijo [sendPadre]="sendHijo" (sendOutputPadre)="recibAlert($event)"></app-hijo>
+        </div>
+        <div *ngIf="sendValuePadre">
+            <img
+                src="https://files.lafm.com.co/assets/public/styles/image_631x369/public/2019-05/homero_1_0.jpg?itok=yewLd_2l">
+        </div>
+    </div>
+</div>
