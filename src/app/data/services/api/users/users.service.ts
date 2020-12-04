@@ -11,7 +11,7 @@ export class UsersService {
   constructor(private httpClient: HttpClient) { }
 
   checkEmail(email: string) {
-    return of({ isEmailAvailable: email !== 'jose.bravo@neoris.com' })
+    return of({ isEmailAvailable: email !== 'jose@neoris.com' })
     .pipe(delay(500));
   }
 

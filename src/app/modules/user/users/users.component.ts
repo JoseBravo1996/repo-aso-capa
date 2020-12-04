@@ -58,7 +58,7 @@ export class UsersComponent implements OnInit {
       price: new FormControl(null, Validators.compose([Validators.min(1), Validators.max(100)])),
       age: new FormControl(0, Validators.min(18)),
       birth: new FormControl(),
-      mail: new FormControl(null, [Validators.email, MyValidations.validateEmail(this.userService)])
+      mail: new FormControl(null,  {validators: [Validators.required], asyncValidators: [ MyValidations.validateEmail(this.userService)]})
     })
   }
 
