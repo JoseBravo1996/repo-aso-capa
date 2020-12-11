@@ -1,10 +1,11 @@
-import { UsersService } from '../../data/services/users.service';
+
 
 
 import { EmailValidators } from './../../shared/validators/email-validators';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ScCurrencyPipe } from '@sc/portal.fe.lib.ui-core-components';
+import { UsersService } from '@data/services/users/users.service';
 
 const ERROR_MESSAGE = {
   pattern: "Debe ingresar un apellido en miniscula",

@@ -1,0 +1,12 @@
+<div class="container">
+    <form [formGroup]="form">
+        <sc-input label="Ingrese un numero" formControlName="id" type="number"></sc-input>
+        <sc-button type="primary" (onClick)="getCharacterbyId(this.form.controls.id.value)" [disabled]="this.form.invalid">Buscar</sc-button>
+    </form>
+</div>
+<div *ngIf="character$ | async as character">
+    <div class="text-center">
+        <img [src]="character.image" [alt]="character.name">
+        <label>{{character.name}}</label>
+      </div>
+</div>
