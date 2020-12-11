@@ -1,4 +1,4 @@
-import { UsersService } from '../../data/services/users.service';
+import { UsersService } from '../../data/services/users/users.service';
 
 
 import { EmailValidators } from './../../shared/validators/email-validators';

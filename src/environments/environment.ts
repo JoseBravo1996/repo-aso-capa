@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  rickAndMorty: 'https://rickandmortyapi.com/api/',
+  recover: 'https://recover_dev.asociart.com.ar/recoverapi/api/Recover/'
 };
 
 /*

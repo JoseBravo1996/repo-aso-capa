@@ -1,0 +1,23 @@
+<div class="container">
+    <alert type="info" class="text-center">
+        <span>Existe una diferencia en el monto recuperado</span>
+    </alert>
+    <form [formGroup]="form">
+        <div class="row">
+            <div class="col-md-2">
+                <sc-input formControlName="remanente" label="Remanente" isDisabled="true" [pipes]="[ { 'pipe': scCurrency } ]"></sc-input>
+            </div>
+            <div class="col-md-4">
+                <sc-select formControlName="motivos" label="Motivo" placeholder="Seleccionar" [items]="this.reasons" objectKey="Id" objectValue="Description"></sc-select>
+            </div>
+            <div class="col-md-6">
+                <sc-input formControlName="observacion" label="Observaciones" placeholder="Describa aqui el motivo"></sc-input>
+            </div>
+        </div>
+    </form>
+    <hr>
+    <div class="text-right">
+        <sc-button type="secondary" class="mr-1" (onClick)="reject()">Rechazar</sc-button>
+        <sc-button type="primary" (onClick)="autorizar()">Autorizar Cierre</sc-button>
+    </div>
+</div>
