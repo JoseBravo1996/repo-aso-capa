@@ -1,7 +1,7 @@
 import { rickAndMortyRoutes } from '../../constants/rickandMortyRoutes';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Character } from '@data/interfaces/rickandmorty';
+import { Character } from '@data/interfaces/rickAndMorty/rickandmorty';
 import { environment } from '@env/environment';
 
 @Injectable({

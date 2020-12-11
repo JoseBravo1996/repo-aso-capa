@@ -1,1 +1,26 @@
-<p>recovers-list works!</p>
+<div class="container-inline">
+    <alert type="info" class="text-center">
+        <span>Existe una diferencia en el monto recuperado</span>
+    </alert>
+    <form [formGroup]="form">
+        <div class="row">
+            <div class="col-md-2">
+                <sc-input class="mr-1" formControlName="remainder" isDisabled="true"
+                    [pipes]="[ { 'pipe': scCurrency } ]" label="Remanente"></sc-input>
+            </div>
+            <div class="col-md-4">
+                <sc-select class="mr-1" formControlName="reason" placeholder="Seleccionar" label="Motivo"
+                    [items]="reasons" objectValue="Description" objectKey="Id"></sc-select>
+            </div>
+            <div class="col-md-6">
+                <sc-input class="mr-1" formControlName="observations" placeholder="Describa aqui el motivo" type="text"
+                    label="Observaciones"></sc-input>
+            </div>
+        </div>
+    </form>
+    <hr>
+    <div class="state text-right">
+        <sc-button type="secondary" class="mr-1" (onClick)="onReject()">Rechazar</sc-button>
+        <sc-button type="primary" [disabled]="!form.valid" (onClick)="onAuthorize()">Autorizar Cierre</sc-button>
+    </div>
+</div>

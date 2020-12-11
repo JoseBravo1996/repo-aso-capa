@@ -1,4 +1,4 @@
-import { Character } from './../../data/interfaces/rickandmorty';
+import { Character } from '../../data/interfaces/rickAndMorty/rickandmorty';
 import { RickAndMortyService } from './../../data/services/rickAndMorty/rick-and-morty.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';

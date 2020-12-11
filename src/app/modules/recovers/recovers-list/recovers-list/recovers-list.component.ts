@@ -1,19 +1,77 @@
-import { RecoversService } from './../../../../data/services/recovers/recovers.service';
-import { Component, OnInit } from '@angular/core';
+import { ReadClosingReasonsDifference } from '@data/interfaces/recover/readClosingReasonsDifference';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ScCurrencyPipe } from '@sc/portal.fe.lib.ui-core-components';
+import { CloseRecoverDifferenceValues, RejectClosingRecover } from '@data/interfaces/recover';
+import { RecoversService } from '@data/services/recovers/recovers.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-recovers-list',
   templateUrl: './recovers-list.component.html',
-  styleUrls: ['./recovers-list.component.scss']
+  styleUrls: ['./recovers-list.component.scss'],
+  providers: [ScCurrencyPipe]
 })
 export class RecoversListComponent implements OnInit {
 
-  constructor(private recoversService: RecoversService) { }
+  @Input() recoverId: number;
+  public form: FormGroup;
+  public reasons: ReadClosingReasonsDifference[] = [];
+
+  constructor(private formBuilder: FormBuilder, private scCurrency: ScCurrencyPipe,
+    private recoversService: RecoversService, private toastrService: ToastrService) { 
+      this.recoverId = 21;
+    }
 
   ngOnInit() {
-    this.recoversService.readClosingReasonsDifferenceAsync().subscribe(
-      resp => console.log(resp)
-    )
+    this.createForm();
+    this.readClosinReason();
+  }
+
+  createForm() {
+    this.form = this.formBuilder.group({
+      remainder: new FormControl(0, Validators.required),
+      reason: new FormControl(null, Validators.required),
+      observations: new FormControl(null, Validators.maxLength(256)),
+    });
+  }
+
+  onReject() {
+    let rejectRecover: RejectClosingRecover;
+    rejectRecover = {
+      RecoverId: this.recoverId,
+    };
+    this.recoversService.rejectClosingRecoverAsync(rejectRecover).subscribe(
+      () => {
+        this.toastrService.success("Se ha rechazado el cierre del recupero " + this.recoverId);
+      },
+      () => {
+        this.toastrService.error("Hubo un problema, intente más tarde.");
+      }
+    );
+  }
+
+  onAuthorize() {
+    let closeRecover: CloseRecoverDifferenceValues;
+    closeRecover = {
+      RecoverId: this.recoverId,
+      ReasonId: this.form.controls['reason'].value.Id,
+      Observation: this.form.controls['observations'].value
+    };
+    this.recoversService.closeRecoverDifferenceValuesAsync(closeRecover).subscribe(
+      () => {
+        this.toastrService.success("Se autorizo el cierre del recupero " + this.recoverId);
+      },
+      () => {
+        this.toastrService.error("Hubo un problema, intente más tarde.");
+      }
+    );
+  }
+
+  readClosinReason() {
+    this.recoversService.readClosingReasonsDifferenceAsync().subscribe(resp => {
+      this.reasons = resp.Reasons;
+    });
   }
 
 }
