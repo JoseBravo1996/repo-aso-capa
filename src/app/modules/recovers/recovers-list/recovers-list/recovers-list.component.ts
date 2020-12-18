@@ -1,3 +1,4 @@
+import { BackToTheFutureService } from './../../../../data/services/back-to-the-future/back-to-the-future.service';
 import { ReadClosingReasonsDifference } from '@data/interfaces/recover/readClosingReasonsDifference';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -5,6 +6,7 @@ import { ScCurrencyPipe } from '@sc/portal.fe.lib.ui-core-components';
 import { CloseRecoverDifferenceValues, RejectClosingRecover } from '@data/interfaces/recover';
 import { RecoversService } from '@data/services/recovers/recovers.service';
 import { ToastrService } from 'ngx-toastr';
+import { filter, map, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-recovers-list',
@@ -19,13 +21,14 @@ export class RecoversListComponent implements OnInit {
   public reasons: ReadClosingReasonsDifference[] = [];
 
   constructor(private formBuilder: FormBuilder, private scCurrency: ScCurrencyPipe,
-    private recoversService: RecoversService, private toastrService: ToastrService) { 
+    private recoversService: RecoversService, private toastrService: ToastrService,private backToTheFutureService: BackToTheFutureService) {
       this.recoverId = 21;
     }
 
   ngOnInit() {
     this.createForm();
     this.readClosinReason();
+    this.viewMessage();
   }
 
   createForm() {
@@ -72,6 +75,15 @@ export class RecoversListComponent implements OnInit {
     this.recoversService.readClosingReasonsDifferenceAsync().subscribe(resp => {
       this.reasons = resp.Reasons;
     });
+  }
+
+  viewMessage() {
+    const valor = this.backToTheFutureService.telegrafista$.pipe(
+      filter(char => char == 'hola'),
+      map(char => char.toUpperCase()),
+    );
+
+      valor.subscribe(mensaje => console.log(mensaje));
   }
 
 }
