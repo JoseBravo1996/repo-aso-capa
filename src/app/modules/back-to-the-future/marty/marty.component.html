@@ -1,0 +1,9 @@
+<div class="container bg-secondary">
+  <p>Marty</p>
+  <form [formGroup]="form">
+    <sc-input label="Carta para Doc" formControlName="controlMarty"></sc-input>
+    <sc-button type="primary" (onClick)="sendMessage(form.controls.controlMarty.value)">Enviar Carta</sc-button>
+    <sc-button type="primary" (onClick)="viewMessage()">Ver Carta</sc-button>
+  </form>
+  <h3 *ngIf="messageDoc">{{messageDoc}}</h3>
+</div>

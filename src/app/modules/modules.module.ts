@@ -1,3 +1,4 @@
+import { BackToTheFutureModule } from './back-to-the-future/back-to-the-future.module';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { UsersComponent } from './users/users.component';
@@ -12,7 +13,8 @@ import { RecoverComponent } from './recover/recover.component';
   imports: [
     UsersRoutingModule,
     SharedModule,
-    CommunicationModule
+    CommunicationModule,
+    BackToTheFutureModule
   ]
 })
 export class ModulesModule { }

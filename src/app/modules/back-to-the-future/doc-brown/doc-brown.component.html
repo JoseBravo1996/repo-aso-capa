@@ -1,0 +1,10 @@
+<div class="container bg-primary">
+  <p>Doc Brown</p>
+  <form [formGroup]="form">
+    <sc-input label="Carta para marty" formControlName="controlDoc"></sc-input>
+    <sc-button type="primary" (onClick)="sendMessage(this.form.controls.controlDoc.value)">Enviar Carta</sc-button>
+    <sc-button type="primary" (onClick)="viewMessage()">Ver Carta</sc-button>
+  </form>
+  <!-- <h3 *ngIf="messageMarty">{{messageMarty}}</h3> -->
+  <h3 *ngIf="messages">{{messages | json}}</h3>
+</div>
